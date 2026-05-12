@@ -1,36 +1,43 @@
-<style>
-:root{--primary:#0a163a;--accent:#3b82f6;--bg:#f3f4f6;--card-bg:#ffffff;--text-main:#111827;--text-muted:#6b7280;--border:#e5e7eb;--red:#dc2626;--yellow:#f59e0b;--green:#10b981;--r:12px}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text-main);font-family:'Barlow',sans-serif}
-.header{background:var(--card-bg);border-bottom:3px solid var(--primary);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.1)}
-.logo-img{height:28px}
-.header-title{font-weight:800;font-size:14px;color:var(--primary);text-transform:uppercase;line-height:1.1}
-.container{max-width:600px;margin:0 auto;padding:15px 15px 80px}
-.card{background:var(--card-bg);border-radius:var(--r);padding:20px;margin-bottom:15px;border:1px solid var(--border);box-shadow:0 2px 5px rgba(0,0,0,.05);transition:border .2s}
-.card.error-card{border:1.5px solid var(--red)}
-.form-title{color:var(--primary);font-weight:700;margin-bottom:15px;font-size:12px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
-.form-title::before{content:'';width:4px;height:14px;background:var(--accent);border-radius:2px}
-label{display:block;font-size:10px;font-weight:700;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase}
-input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1.5px solid var(--border);background:#f9fafb;font-family:inherit;font-size:14px;outline:none;margin-bottom:4px;color:var(--text-main);transition:border .2s}
-input.campo-error,select.campo-error,textarea.campo-error{border-color:var(--red);background:#fff5f5}
-.error-msg{font-size:10px;color:var(--red);font-weight:700;margin-bottom:8px;display:none}
-.error-msg.visible{display:block}
-.foto-drop{border:2px dashed var(--accent);border-radius:10px;padding:30px;text-align:center;background:#f0f7ff;cursor:pointer}
-.preview-img{width:100%;max-height:250px;object-fit:contain;border-radius:8px;margin-top:12px;display:none;border:1px solid var(--border)}
-.btn-primary{background:var(--primary);color:white;border:none;padding:18px;border-radius:12px;width:100%;font-weight:800;text-transform:uppercase;cursor:pointer;font-size:14px;box-shadow:0 4px 12px rgba(10,22,58,.2);transition:opacity .2s}
-.btn-primary:disabled{opacity:.5;cursor:not-allowed}
-.riesgo-tag{padding:15px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;font-weight:800}
-.riesgo-tag.bajo{background:#ecfdf5;color:var(--green)}
-.riesgo-tag.medio{background:#fffbeb;color:var(--yellow)}
-.riesgo-tag.alto{background:#fef2f2;color:var(--red)}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-#toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);padding:12px 24px;border-radius:50px;font-size:13px;font-weight:700;display:none;z-index:1000;box-shadow:0 4px 15px rgba(0,0,0,.2);display:none;align-items:center;gap:8px}
-#toast.error{background:#dc2626;color:white}
-#toast.success{background:#10b981;color:white}
-#toast.info{background:var(--primary);color:white}
-</style>
-
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemba Walk TekniPlex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#0a163a;--accent:#3b82f6;--bg:#f3f4f6;--card-bg:#ffffff;--text-main:#111827;--text-muted:#6b7280;--border:#e5e7eb;--red:#dc2626;--yellow:#f59e0b;--green:#10b981;--r:12px}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{background:var(--bg);color:var(--text-main);font-family:'Barlow',sans-serif}
+        .header{background:var(--card-bg);border-bottom:3px solid var(--primary);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+        .logo-img{height:28px}
+        .header-title{font-weight:800;font-size:14px;color:var(--primary);text-transform:uppercase;line-height:1.1}
+        .container{max-width:600px;margin:0 auto;padding:15px 15px 80px}
+        .card{background:var(--card-bg);border-radius:var(--r);padding:20px;margin-bottom:15px;border:1px solid var(--border);box-shadow:0 2px 5px rgba(0,0,0,.05);transition:border .2s}
+        .card.error-card{border:1.5px solid var(--red)}
+        .form-title{color:var(--primary);font-weight:700;margin-bottom:15px;font-size:12px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+        .form-title::before{content:'';width:4px;height:14px;background:var(--accent);border-radius:2px}
+        label{display:block;font-size:10px;font-weight:700;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase}
+        input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1.5px solid var(--border);background:#f9fafb;font-family:inherit;font-size:14px;outline:none;margin-bottom:4px;color:var(--text-main);transition:border .2s}
+        input.campo-error,select.campo-error,textarea.campo-error{border-color:var(--red);background:#fff5f5}
+        .error-msg{font-size:10px;color:var(--red);font-weight:700;margin-bottom:8px;display:none}
+        .error-msg.visible{display:block}
+        .foto-drop{border:2px dashed var(--accent);border-radius:10px;padding:30px;text-align:center;background:#f0f7ff;cursor:pointer}
+        .preview-img{width:100%;max-height:250px;object-fit:contain;border-radius:8px;margin-top:12px;display:none;border:1px solid var(--border)}
+        .btn-primary{background:var(--primary);color:white;border:none;padding:18px;border-radius:12px;width:100%;font-weight:800;text-transform:uppercase;cursor:pointer;font-size:14px;box-shadow:0 4px 12px rgba(10,22,58,.2);transition:opacity .2s}
+        .btn-primary:disabled{opacity:.5;cursor:not-allowed}
+        .riesgo-tag{padding:15px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;font-weight:800}
+        .riesgo-tag.bajo{background:#ecfdf5;color:var(--green)}
+        .riesgo-tag.medio{background:#fffbeb;color:var(--yellow)}
+        .riesgo-tag.alto{background:#fef2f2;color:var(--red)}
+        .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+        #toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);padding:12px 24px;border-radius:50px;font-size:13px;font-weight:700;display:none;z-index:1000;box-shadow:0 4px 15px rgba(0,0,0,.2);align-items:center;gap:8px}
+        #toast.error{background:#dc2626;color:white}
+        #toast.success{background:#10b981;color:white}
+        #toast.info{background:var(--primary);color:white}
+    </style>
+</head>
+<body>
 
 <div class="header">
   <div style="display:flex;align-items:center;gap:12px">
@@ -42,7 +49,6 @@ input.campo-error,select.campo-error,textarea.campo-error{border-color:var(--red
 </div>
 
 <div class="container">
-
   <div class="card" id="card-datos">
     <div class="form-title">Datos de Planta</div>
     <label>Área o Proceso *</label>
@@ -72,12 +78,12 @@ input.campo-error,select.campo-error,textarea.campo-error{border-color:var(--red
     <div class="grid2">
       <div>
         <label>Zona *</label>
-        <input type="text" id="f-zona" placeholder="Ej: Pasillo principal, frente a M3..." oninput="limpiarError(this)">
+        <input type="text" id="f-zona" placeholder="Ej: Pasillo principal..." oninput="limpiarError(this)">
         <div class="error-msg" id="err-zona">⚠ Indica la zona del hallazgo</div>
       </div>
       <div>
         <label>Referencia específica</label>
-        <input type="text" id="f-zona-ref" placeholder="Ej: Columna B, junto a salida">
+        <input type="text" id="f-zona-ref" placeholder="Ej: Columna B">
       </div>
     </div>
   </div>
@@ -89,28 +95,16 @@ input.campo-error,select.campo-error,textarea.campo-error{border-color:var(--red
         <label>Tipo de peligro *</label>
         <select id="f-peligro-tipo" onchange="limpiarError(this)">
           <option value="">Seleccionar...</option>
-          <optgroup label="Seguridad">
-            <option>Caída al mismo nivel</option><option>Caída a distinto nivel</option>
-            <option>Golpe / Atrapamiento</option><option>Corte / Lacerante</option>
-            <option>Eléctrico</option><option>Incendio / Explosión</option>
-            <option>Atropellamiento</option><option>Colapso estructural</option>
-          </optgroup>
-          <optgroup label="Higiene Industrial">
-            <option>Ruido excesivo</option><option>Exposición química</option>
-            <option>Temperatura extrema</option><option>Iluminación deficiente</option>
-            <option>Polvo / Partículas</option><option>Ergonómico</option>
-          </optgroup>
-          <optgroup label="Condición / Orden">
-            <option>Derrame / Fuga</option><option>Falta de señalización</option>
-            <option>EPP no usado</option><option>Desorden / 5S</option>
-            <option>Equipo sin mantenimiento</option>
-          </optgroup>
+          <option>Caída al mismo nivel</option><option>Caída a distinto nivel</option>
+          <option>Golpe / Atrapamiento</option><option>Eléctrico</option>
+          <option>Incendio / Explosión</option><option>Exposición química</option>
+          <option>Ergonómico</option><option>Desorden / 5S</option>
         </select>
         <div class="error-msg" id="err-peligro-tipo">⚠ Selecciona el tipo de peligro</div>
       </div>
       <div>
         <label>Fuente del peligro *</label>
-        <input type="text" id="f-peligro-fuente" placeholder="Ej: Piso mojado, cable pelado..." oninput="limpiarError(this)">
+        <input type="text" id="f-peligro-fuente" placeholder="Ej: Piso mojado" oninput="limpiarError(this)">
         <div class="error-msg" id="err-peligro-fuente">⚠ Describe la fuente del peligro</div>
       </div>
     </div>
@@ -125,29 +119,29 @@ input.campo-error,select.campo-error,textarea.campo-error{border-color:var(--red
 
   <div class="card" id="card-riesgo">
     <div class="form-title">Tipo de Riesgo</div>
-    <div class="grid2" style="margin-bottom:4px">
+    <div class="grid2">
       <div>
         <label>Categoría de riesgo *</label>
         <select id="f-riesgo-cat" onchange="limpiarError(this)">
           <option value="">Seleccionar...</option>
           <option>Riesgo de seguridad</option><option>Riesgo de salud</option>
-          <option>Riesgo ambiental</option><option>Riesgo de calidad</option><option>Riesgo de proceso</option>
+          <option>Riesgo ambiental</option>
         </select>
-        <div class="error-msg" id="err-riesgo-cat">⚠ Selecciona la categoría de riesgo</div>
+        <div class="error-msg" id="err-riesgo-cat">⚠ Selecciona la categoría</div>
       </div>
       <div>
         <label>Acción requerida *</label>
         <select id="f-accion" onchange="limpiarError(this)">
           <option value="">Seleccionar...</option>
           <option>Corrección inmediata</option><option>Corrección en 24 hrs</option>
-          <option>Corrección en 72 hrs</option><option>Corrección planificada</option><option>Solo observación</option>
+          <option>Corrección planificada</option>
         </select>
-        <div class="error-msg" id="err-accion">⚠ Selecciona la acción requerida</div>
+        <div class="error-msg" id="err-accion">⚠ Selecciona la acción</div>
       </div>
     </div>
     <label>Medida de control sugerida *</label>
-    <textarea id="f-control" rows="2" placeholder="¿Qué acción se debe tomar para mitigar el riesgo?" oninput="limpiarError(this)"></textarea>
-    <div class="error-msg" id="err-control">⚠ Describe la medida de control sugerida</div>
+    <textarea id="f-control" rows="2" placeholder="Acción sugerida" oninput="limpiarError(this)"></textarea>
+    <div class="error-msg" id="err-control">⚠ Describe la medida de control</div>
   </div>
 
   <div class="card">
@@ -194,21 +188,21 @@ input.campo-error,select.campo-error,textarea.campo-error{border-color:var(--red
 <div id="toast"></div>
 
 <script>
-// URL actualizada con la dirección de tu Apps Script proporcionada
+// URL ACTUALIZADA
 const URL_WEB='https://script.google.com/macros/s/AKfycbweTKmNDSJ6V5gEZ0wXWitjkcYkQHEzocA6yhA1A52zGSHfcQrEsEjr1gX57V3DEKU/exec';
 let fotoBase64="";
 
 const CAMPOS_REQUERIDOS=[
-  {id:'f-area',   err:'err-area',          card:'card-datos'},
-  {id:'f-resp',   err:'err-resp',          card:'card-datos'},
-  {id:'f-desc',   err:'err-desc',          card:'card-datos'},
-  {id:'f-zona',   err:'err-zona',          card:'card-ubicacion'},
-  {id:'f-peligro-tipo',   err:'err-peligro-tipo',  card:'card-peligro'},
-  {id:'f-peligro-fuente', err:'err-peligro-fuente',card:'card-peligro'},
-  {id:'f-expuestos',      err:'err-expuestos',      card:'card-peligro'},
-  {id:'f-riesgo-cat',     err:'err-riesgo-cat',     card:'card-riesgo'},
-  {id:'f-accion',         err:'err-accion',          card:'card-riesgo'},
-  {id:'f-control',        err:'err-control',         card:'card-riesgo'},
+  {id:'f-area', err:'err-area', card:'card-datos'},
+  {id:'f-resp', err:'err-resp', card:'card-datos'},
+  {id:'f-desc', err:'err-desc', card:'card-datos'},
+  {id:'f-zona', err:'err-zona', card:'card-ubicacion'},
+  {id:'f-peligro-tipo', err:'err-peligro-tipo', card:'card-peligro'},
+  {id:'f-peligro-fuente', err:'err-peligro-fuente', card:'card-peligro'},
+  {id:'f-expuestos', err:'err-expuestos', card:'card-peligro'},
+  {id:'f-riesgo-cat', err:'err-riesgo-cat', card:'card-riesgo'},
+  {id:'f-accion', err:'err-accion', card:'card-riesgo'},
+  {id:'f-control', err:'err-control', card:'card-riesgo'},
 ];
 
 function limpiarError(el){
@@ -228,8 +222,7 @@ function validar(){
   const tarjetasConError=new Set();
   CAMPOS_REQUERIDOS.forEach(c=>{
     const el=document.getElementById(c.id);
-    const val=el.value.trim();
-    if(!val){
+    if(!el.value.trim()){
       ok=false;
       el.classList.add('campo-error');
       document.getElementById(c.err).classList.add('visible');
@@ -241,53 +234,40 @@ function validar(){
 }
 
 function procesarFoto(e){
-  const file=e.target.files[0];if(!file)return;
+  const file=e.target.files[0]; if(!file)return;
   const reader=new FileReader();
   reader.onload=(ev)=>{
     const img=new Image();
     img.onload=()=>{
       const canvas=document.createElement('canvas');
-      const MAX_WIDTH=600;canvas.width=MAX_WIDTH;canvas.height=img.height*(MAX_WIDTH/img.width);
+      const MAX_WIDTH=600;
+      canvas.width=MAX_WIDTH;
+      canvas.height=img.height*(MAX_WIDTH/img.width);
       canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
       fotoBase64=canvas.toDataURL('image/jpeg',.6);
-      const preview=document.getElementById('img-preview');
-      preview.src=fotoBase64;preview.style.display='block';
-    };img.src=ev.target.result;
-  };reader.readAsDataURL(file);
+      document.getElementById('img-preview').src=fotoBase64;
+      document.getElementById('img-preview').style.display='block';
+    };
+    img.src=ev.target.result;
+  };
+  reader.readAsDataURL(file);
 }
 
 function updateRiesgo(){
   const suma=parseInt(document.getElementById('f-cons').value)+parseInt(document.getElementById('f-prob').value)+parseInt(document.getElementById('f-expo').value);
   const tag=document.getElementById('riesgo-tag');
-  let n='bajo';if(suma>=8)n='alto';else if(suma>=4)n='medio';
+  let n='bajo'; if(suma>=8)n='alto'; else if(suma>=4)n='medio';
   tag.className='riesgo-tag '+n;
   document.getElementById('riesgo-text').textContent='RIESGO '+n.toUpperCase();
   document.getElementById('riesgo-val').textContent=suma;
 }
 
-function vibrarExito(){
-  if(navigator.vibrate){
-    navigator.vibrate([150,80,150]);
-  }
-}
-
-function vibrarError(){
-  if(navigator.vibrate){
-    navigator.vibrate([60,40,60,40,60]);
-  }
-}
-
 async function salvar(){
-  if(!validar()){
-    vibrarError();
-    msg("Completa todos los campos obligatorios","error");
-    const primerError=document.querySelector('.campo-error');
-    if(primerError)primerError.scrollIntoView({behavior:'smooth',block:'center'});
-    return;
-  }
+  if(!validar()){ msg("Completa los campos obligatorios","error"); return; }
   const btn=document.getElementById('btn-enviar');
   btn.disabled=true;
   msg("Sincronizando...","info");
+  
   const h={
     fecha:new Date().toLocaleString('es-MX'),
     area:document.getElementById('f-area').value,
@@ -308,23 +288,11 @@ async function salvar(){
     riesgo_texto:document.getElementById('riesgo-text').textContent,
     foto:fotoBase64
   };
+
   try{
     await fetch(URL_WEB,{method:'POST',mode:'no-cors',body:JSON.stringify(h)});
-    vibrarExito();
     msg("✔ Reporte guardado exitosamente","success");
-    document.getElementById('f-resp').value='';
-    document.getElementById('f-desc').value='';
-    document.getElementById('f-zona').value='';
-    document.getElementById('f-zona-ref').value='';
-    document.getElementById('f-peligro-fuente').value='';
-    document.getElementById('f-control').value='';
-    document.getElementById('f-area').value='';
-    document.getElementById('f-peligro-tipo').value='';
-    document.getElementById('f-expuestos').value='';
-    document.getElementById('f-riesgo-cat').value='';
-    document.getElementById('f-accion').value='';
-    document.getElementById('img-preview').style.display='none';
-    fotoBase64='';
+    // Limpiar formulario opcionalmente aquí
   }catch(e){
     msg("Error de conexión","error");
   }finally{
@@ -334,11 +302,11 @@ async function salvar(){
 
 function msg(m,tipo='info'){
   const t=document.getElementById('toast');
-  t.textContent=m;
-  t.className=tipo;
-  t.style.display='flex';
+  t.textContent=m; t.className=tipo; t.style.display='flex';
   setTimeout(()=>t.style.display='none',3500);
 }
 
 document.getElementById('current-date').textContent=new Date().toLocaleDateString('es-MX',{day:'numeric',month:'short'}).toUpperCase();
 </script>
+</body>
+</html>
