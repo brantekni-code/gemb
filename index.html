@@ -243,18 +243,28 @@ async function salvar(){
   };
 
   try{
-    await fetch(URL_WEB,{method:'POST',mode:'no-cors',body:JSON.stringify(h)});
-    msg("✔ Reporte guardado exitosamente","success");
-    
-    ['f-area','f-resp','f-desc','f-zona','f-zona-ref','f-peligro-fuente','f-riesgo-cat'].forEach(id=>{
-      const el = document.getElementById(id);
-      el.value='';
-      el.classList.remove('campo-error');
+    // ✅ Se quita mode:'no-cors' para poder leer la respuesta del servidor
+    const resp = await fetch(URL_WEB, {
+      method: 'POST',
+      body: JSON.stringify(h)
     });
-    document.querySelectorAll('.card').forEach(c => c.classList.remove('error-card'));
-    document.querySelectorAll('.error-msg').forEach(m => m.classList.remove('visible'));
-    document.getElementById('img-preview').style.display='none';
-    fotoBase64='';
+    const resultado = await resp.json();
+
+    if(resultado.status === 'ok'){
+      msg("✔ Reporte guardado exitosamente","success");
+      
+      ['f-area','f-resp','f-desc','f-zona','f-zona-ref','f-peligro-fuente','f-riesgo-cat'].forEach(id=>{
+        const el = document.getElementById(id);
+        el.value='';
+        el.classList.remove('campo-error');
+      });
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('error-card'));
+      document.querySelectorAll('.error-msg').forEach(m => m.classList.remove('visible'));
+      document.getElementById('img-preview').style.display='none';
+      fotoBase64='';
+    } else {
+      msg("Error al guardar: " + (resultado.msg || 'Intenta de nuevo'), "error");
+    }
   }catch(e){
     msg("Error de conexión","error");
   }finally{
