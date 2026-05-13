@@ -65,21 +65,30 @@
       </optgroup>
     </select>
     <div class="error-msg" id="err-area">⚠ Selecciona el área o proceso</div>
+
     <label>Responsable *</label>
     <input type="text" id="f-resp" placeholder="Nombre completo" oninput="limpiarError(this)">
     <div class="error-msg" id="err-resp">⚠ Ingresa el nombre del responsable</div>
-    <label>Descripción *</label>
+
+    <label>Descripción del Hallazgo *</label>
     <textarea id="f-desc" rows="3" placeholder="¿Qué observaste?" oninput="limpiarError(this)"></textarea>
     <div class="error-msg" id="err-desc">⚠ Describe el hallazgo observado</div>
   </div>
 
+  <div class="card" id="card-peligro">
+    <div class="form-title">Peligro Identificado</div>
+    <label>Peligro Identificado (Respuesta Abierta) *</label>
+    <textarea id="f-peligro-fuente" rows="3" placeholder="Detalla el peligro detectado..." oninput="limpiarError(this)"></textarea>
+    <div class="error-msg" id="err-peligro-fuente">⚠ Describe el peligro identificado</div>
+  </div>
+
   <div class="card" id="card-ubicacion">
-    <div class="form-title">Ubicación del Hallazgo</div>
+    <div class="form-title">Ubicación</div>
     <div class="grid2">
       <div>
         <label>Zona *</label>
-        <input type="text" id="f-zona" placeholder="Ej: Pasillo principal..." oninput="limpiarError(this)">
-        <div class="error-msg" id="err-zona">⚠ Indica la zona del hallazgo</div>
+        <input type="text" id="f-zona" placeholder="Ej: Pasillo principal" oninput="limpiarError(this)">
+        <div class="error-msg" id="err-zona">⚠ Indica la zona</div>
       </div>
       <div>
         <label>Referencia específica</label>
@@ -88,60 +97,11 @@
     </div>
   </div>
 
-  <div class="card" id="card-peligro">
-    <div class="form-title">Peligro Identificado</div>
-    <div class="grid2">
-      <div>
-        <label>Tipo de peligro *</label>
-        <select id="f-peligro-tipo" onchange="limpiarError(this)">
-          <option value="">Seleccionar...</option>
-          <option>Caída al mismo nivel</option><option>Caída a distinto nivel</option>
-          <option>Golpe / Atrapamiento</option><option>Eléctrico</option>
-          <option>Incendio / Explosión</option><option>Exposición química</option>
-          <option>Ergonómico</option><option>Desorden / 5S</option>
-        </select>
-        <div class="error-msg" id="err-peligro-tipo">⚠ Selecciona el tipo de peligro</div>
-      </div>
-      <div>
-        <label>Fuente del peligro *</label>
-        <input type="text" id="f-peligro-fuente" placeholder="Ej: Piso mojado" oninput="limpiarError(this)">
-        <div class="error-msg" id="err-peligro-fuente">⚠ Describe la fuente del peligro</div>
-      </div>
-    </div>
-    <label>Personas expuestas estimadas *</label>
-    <select id="f-expuestos" onchange="limpiarError(this)">
-      <option value="">Seleccionar...</option>
-      <option>1 persona</option><option>2–5 personas</option>
-      <option>6–10 personas</option><option>Más de 10 personas</option>
-    </select>
-    <div class="error-msg" id="err-expuestos">⚠ Indica cuántas personas están expuestas</div>
-  </div>
-
   <div class="card" id="card-riesgo">
     <div class="form-title">Tipo de Riesgo</div>
-    <div class="grid2">
-      <div>
-        <label>Categoría de riesgo *</label>
-        <select id="f-riesgo-cat" onchange="limpiarError(this)">
-          <option value="">Seleccionar...</option>
-          <option>Riesgo de seguridad</option><option>Riesgo de salud</option>
-          <option>Riesgo ambiental</option>
-        </select>
-        <div class="error-msg" id="err-riesgo-cat">⚠ Selecciona la categoría</div>
-      </div>
-      <div>
-        <label>Acción requerida *</label>
-        <select id="f-accion" onchange="limpiarError(this)">
-          <option value="">Seleccionar...</option>
-          <option>Corrección inmediata</option><option>Corrección en 24 hrs</option>
-          <option>Corrección planificada</option>
-        </select>
-        <div class="error-msg" id="err-accion">⚠ Selecciona la acción</div>
-      </div>
-    </div>
-    <label>Medida de control sugerida *</label>
-    <textarea id="f-control" rows="2" placeholder="Acción sugerida" oninput="limpiarError(this)"></textarea>
-    <div class="error-msg" id="err-control">⚠ Describe la medida de control</div>
+    <label>Tipo de Riesgo (Respuesta Abierta) *</label>
+    <textarea id="f-riesgo-cat" rows="3" placeholder="Describe el riesgo detectado..." oninput="limpiarError(this)"></textarea>
+    <div class="error-msg" id="err-riesgo-cat">⚠ Describe el riesgo identificado</div>
   </div>
 
   <div class="card">
@@ -172,7 +132,7 @@
       <div>
         <label>Expo.</label>
         <select id="f-expo" onchange="updateRiesgo()">
-          <option value="1">1</option><option value="3">3</option><option value="5">5</option>
+          <option value="1">1</option><option value="2">2</option><option value="3">3</option>
         </select>
       </div>
     </div>
@@ -188,7 +148,6 @@
 <div id="toast"></div>
 
 <script>
-// URL ACTUALIZADA
 const URL_WEB='https://script.google.com/macros/s/AKfycbweTKmNDSJ6V5gEZ0wXWitjkcYkQHEzocA6yhA1A52zGSHfcQrEsEjr1gX57V3DEKU/exec';
 let fotoBase64="";
 
@@ -196,13 +155,9 @@ const CAMPOS_REQUERIDOS=[
   {id:'f-area', err:'err-area', card:'card-datos'},
   {id:'f-resp', err:'err-resp', card:'card-datos'},
   {id:'f-desc', err:'err-desc', card:'card-datos'},
-  {id:'f-zona', err:'err-zona', card:'card-ubicacion'},
-  {id:'f-peligro-tipo', err:'err-peligro-tipo', card:'card-peligro'},
   {id:'f-peligro-fuente', err:'err-peligro-fuente', card:'card-peligro'},
-  {id:'f-expuestos', err:'err-expuestos', card:'card-peligro'},
-  {id:'f-riesgo-cat', err:'err-riesgo-cat', card:'card-riesgo'},
-  {id:'f-accion', err:'err-accion', card:'card-riesgo'},
-  {id:'f-control', err:'err-control', card:'card-riesgo'},
+  {id:'f-zona', err:'err-zona', card:'card-ubicacion'},
+  {id:'f-riesgo-cat', err:'err-riesgo-cat', card:'card-riesgo'}
 ];
 
 function limpiarError(el){
@@ -219,17 +174,15 @@ function limpiarError(el){
 
 function validar(){
   let ok=true;
-  const tarjetasConError=new Set();
   CAMPOS_REQUERIDOS.forEach(c=>{
     const el=document.getElementById(c.id);
     if(!el.value.trim()){
       ok=false;
       el.classList.add('campo-error');
       document.getElementById(c.err).classList.add('visible');
-      tarjetasConError.add(c.card);
+      document.getElementById(c.card).classList.add('error-card');
     }
   });
-  tarjetasConError.forEach(id=>document.getElementById(id).classList.add('error-card'));
   return ok;
 }
 
@@ -275,12 +228,12 @@ async function salvar(){
     desc:document.getElementById('f-desc').value,
     zona:document.getElementById('f-zona').value,
     zona_ref:document.getElementById('f-zona-ref').value||'N/A',
-    peligro_tipo:document.getElementById('f-peligro-tipo').value,
+    peligro_tipo: 'Respuesta Abierta',
     peligro_fuente:document.getElementById('f-peligro-fuente').value,
-    personas_expuestas:document.getElementById('f-expuestos').value,
+    personas_expuestas: 'N/A',
     riesgo_categoria:document.getElementById('f-riesgo-cat').value,
-    accion_requerida:document.getElementById('f-accion').value,
-    medida_control:document.getElementById('f-control').value,
+    accion_requerida: 'N/A',
+    medida_control: 'N/A',
     consecuencia:document.getElementById('f-cons').value,
     probabilidad:document.getElementById('f-prob').value,
     exposicion:document.getElementById('f-expo').value,
@@ -292,7 +245,16 @@ async function salvar(){
   try{
     await fetch(URL_WEB,{method:'POST',mode:'no-cors',body:JSON.stringify(h)});
     msg("✔ Reporte guardado exitosamente","success");
-    // Limpiar formulario opcionalmente aquí
+    
+    ['f-area','f-resp','f-desc','f-zona','f-zona-ref','f-peligro-fuente','f-riesgo-cat'].forEach(id=>{
+      const el = document.getElementById(id);
+      el.value='';
+      el.classList.remove('campo-error');
+    });
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('error-card'));
+    document.querySelectorAll('.error-msg').forEach(m => m.classList.remove('visible'));
+    document.getElementById('img-preview').style.display='none';
+    fotoBase64='';
   }catch(e){
     msg("Error de conexión","error");
   }finally{
